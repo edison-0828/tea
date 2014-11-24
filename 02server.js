@@ -17,12 +17,29 @@ function onRequest(request, response) {
   // response.write('<img src="images/ssj.jpg" />');
   // response.end();
 
+
+  // fs.readFile("images/ssj.jpg","binary",function(error,file){
+  //   if(error){
+  //     response.writeHead(500,{"Content-Type":"text/plain"});
+  //     response.write(error+"\n");
+  //     response.end();
+  //   }else{
+  //     response.writeHead(200,{"Content-Type":"image/jpg"});
+  //     response.write(file,"binary");
+  //     response.end();
+  //   }
+  // });
+
+
   response.writeHead(200, {
     "Content-Type": "image/jpg"
   });
   fs.createReadStream("images/ssj.jpg", "binary").pipe(response);
+
+
+
 }
 
-http.createServer(onRequest).listen(8888, '127.0.0.1');
+http.createServer(onRequest).listen(8888,'127.0.0.1');
 
 console.log("Server has started.");
